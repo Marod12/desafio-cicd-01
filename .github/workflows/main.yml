@@ -58,8 +58,8 @@ jobs:
           marod12/pipeline-0-master:v${{ github.run_number }} 
           marod12/pipeline-0-master:latest
 
-    - name: Scan co trivy
-      uses: aquasecurity/trivy-action@0.23.0
+    - name: Scan com trivy
+      uses: aquasecurity/trivy-action@0.28.0
       with:
         scan-type: 'image'
         image-ref: 'marod12/pipeline-0-master:v${{ github.run_number }}'
@@ -68,7 +68,7 @@ jobs:
         severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
 
     - name: Upload do arquivo trivy para o github
-      uses: github/codeql-action/upload-safif@v1
+      uses: github/codeql-action/upload-sarif@v3
       with:
         category: docker-result
         sarif_file: trivy-docker-result.sarif
